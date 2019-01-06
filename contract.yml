@@ -52,5 +52,5 @@ logging:
       springframework:
         web: DEBUG
         
-env: dev6
+env: dev7
 
