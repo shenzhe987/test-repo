@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: contract
+  sleuth:
+    sampler:
+      probability: 1.0
+    traceId128: true
+  zipkin:
+    baseUrl: http://localhost:9411/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      #,http://localhost:8762/eureka/
+  instance:
+    prefer-ip-address: true
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user
+  ConnectTimeout: 1000
+  ReadTimeout: 30000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
+      circuitBreaker:
+        enabled: true
+        requestVolumeThreshold: 50
+        sleepWindowInMilliseconds: 60000
+        errorThresholdPercentage: 10
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
