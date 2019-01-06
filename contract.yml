@@ -61,4 +61,4 @@ logging:
       springframework:
         web: DEBUG
         
-env: test
+env: dev
